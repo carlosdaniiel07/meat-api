@@ -5,7 +5,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import TypeOrmConfig from './config/typeorm.config'
 
 import { AuthModule } from './modules/auth/auth.module';
-import { OrdersModule } from './modules/orders/orders.module';
 
 import { AppController } from './app.controller';
 
@@ -17,7 +16,6 @@ import { AppController } from './app.controller';
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
-    OrdersModule
   ],
   controllers: [AppController],
   providers: [],
