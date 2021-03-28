@@ -35,6 +35,7 @@ export class Restaurant extends BaseEntity {
 
   @Column({
     nullable: false,
+    type: 'numeric',
   })
   rating: number
 
