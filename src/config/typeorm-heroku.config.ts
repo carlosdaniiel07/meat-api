@@ -1,16 +1,12 @@
 import { ConfigService } from "@nestjs/config";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
-import { Auth } from "src/modules/auth/auth.entity";
-import { Restaurant } from "src/modules/restaurants/restaurant.entity";
+import {entities} from './entities'
 
 const getConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   type: 'postgres',
   url: configService.get<string>('DATABASE_URL'),
-  entities: [
-    Auth,
-    Restaurant,
-  ],
+  entities,
   synchronize: true,
   ssl: true,
   extra: {

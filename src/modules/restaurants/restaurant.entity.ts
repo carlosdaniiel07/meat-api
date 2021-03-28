@@ -1,5 +1,7 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 import { BaseEntity } from "src/models/base-entity.model";
+import { Menu } from "./menu.entity";
+import { Review } from "./review.entity";
 
 @Entity()
 export class Restaurant extends BaseEntity {
@@ -45,4 +47,14 @@ export class Restaurant extends BaseEntity {
     name: 'image_path'
   })
   imagePath: string
+
+  @OneToMany(() => Menu, menu => menu.restaurant, {
+    eager: true,  
+  })
+  menu: Menu[]
+
+  @OneToMany(() => Review, review => review.restaurant, {
+    eager: false,
+  })
+  reviews: Review[]
 }

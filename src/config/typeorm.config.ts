@@ -1,8 +1,7 @@
 import { ConfigService } from "@nestjs/config";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
-import { Auth } from "src/modules/auth/auth.entity";
-import { Restaurant } from "src/modules/restaurants/restaurant.entity";
+import {entities} from './entities'
 
 const getConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   type: 'postgres',
@@ -11,10 +10,7 @@ const getConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   username: configService.get<string>('APP_DATABASE_USER'),
   password: configService.get<string>('APP_DATABASE_PASSWORD'),
   database: configService.get<string>('APP_DATABASE_NAME'),
-  entities: [
-    Auth,
-    Restaurant,
-  ],
+  entities,
   synchronize: true,
   ssl: true,
   extra: {

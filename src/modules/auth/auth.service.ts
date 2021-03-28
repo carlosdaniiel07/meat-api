@@ -39,10 +39,6 @@ export class AuthService {
       throw new ApiException(404, `Nenhum usuário encontrado com o e-mail ${email}`)
     }
 
-    if (!auth.isActive) {
-      throw new ApiException(400, 'Usuário desativado')
-    }
-
     if (!this.comparePassword(password, auth.password)) {
       throw new ApiException(400, 'Senha incorreta')
     }
