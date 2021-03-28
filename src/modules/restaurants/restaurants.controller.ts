@@ -14,7 +14,7 @@ export class RestaurantsController {
     return this.service.findAll()
   }
 
-  @Get('/{id}')
+  @Get(':id')
   async getById(@Param('id') id: string): Promise<Restaurant> {
     return await this.service.findById(id);
   }
