@@ -54,7 +54,7 @@ export class RestaurantsService {
     const isValidRating = this.isValidRating(createReviewDto.rating)
 
     if (!isValidRating) {
-      throw new ApiException(400, `A nota data (${createReviewDto.rating}) não é válida`)
+      throw new ApiException(400, `A nota dada (${createReviewDto.rating}) não é válida`)
     }
 
     return await this.reviewRepository.save({
