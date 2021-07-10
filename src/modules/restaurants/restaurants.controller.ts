@@ -33,6 +33,11 @@ export class RestaurantsController {
     return await this.service.saveReview(id, createReviewDto)
   }
 
+  @Get(':id/menu')
+  async getMenu(@Param('id') id: string): Promise<Menu[]> {
+    return await this.service.findMenuByRestaurant(id)
+  }
+
   @Post(':id/menu')
   async saveMenu(@Param('id') id: string, @Body() createMenuDto: CreateMenuDto): Promise<Menu> {
     return await this.service.saveMenu(id, createMenuDto)

@@ -49,7 +49,7 @@ export class Restaurant extends BaseEntity {
   imagePath: string
 
   @OneToMany(() => Menu, menu => menu.restaurant, {
-    eager: true,  
+    eager: false,
   })
   menu: Menu[]
 
