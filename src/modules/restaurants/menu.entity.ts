@@ -1,6 +1,6 @@
-import { BaseEntity } from "src/models/base-entity.model"
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm"
-import { Restaurant } from "./restaurant.entity"
+import { BaseEntity } from 'src/models/base-entity.model';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Restaurant } from './restaurant.entity';
 
 @Entity()
 export class Menu extends BaseEntity {
@@ -8,31 +8,35 @@ export class Menu extends BaseEntity {
     length: 50,
     nullable: false,
   })
-  name: string
+  name: string;
 
   @Column({
     length: 100,
     nullable: false,
   })
-  description: string
+  description: string;
 
   @Column({
     name: 'image_path',
     length: 100,
     nullable: false,
   })
-  imagePath: string
+  imagePath: string;
 
   @Column({
     type: 'numeric',
     nullable: false,
   })
-  price: number
+  price: number;
 
-  @ManyToOne(() => Restaurant, restaurant => restaurant.menu, {
-    eager: false,
-    nullable: false,
-  })
+  @ManyToOne(
+    () => Restaurant,
+    restaurant => restaurant.menu,
+    {
+      eager: false,
+      nullable: false,
+    },
+  )
   @JoinColumn({ name: 'restaurant_id' })
-  restaurant: Restaurant
+  restaurant: Restaurant;
 }

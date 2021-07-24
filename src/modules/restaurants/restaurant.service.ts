@@ -10,15 +10,17 @@ import { Restaurant } from './restaurant.entity';
 import { Review } from './review.entity';
 
 @Injectable()
-export class RestaurantsService {
+export class RestaurantService {
   constructor(
-    @InjectRepository(Restaurant) private readonly repository: Repository<Restaurant>,
+    @InjectRepository(Restaurant)
+    private readonly repository: Repository<Restaurant>,
     @InjectRepository(Menu) private readonly menuRepository: Repository<Menu>,
-    @InjectRepository(Review) private readonly reviewRepository: Repository<Review>,
+    @InjectRepository(Review)
+    private readonly reviewRepository: Repository<Review>,
   ) {}
 
   async findAll(): Promise<Restaurant[]> {
-    return await this.repository.find()
+    return await this.repository.find();
   }
 
   async findById(id: string): Promise<Restaurant> {
@@ -32,11 +34,15 @@ export class RestaurantsService {
   }
 
   async findMenuByRestaurant(id: string): Promise<Menu[]> {
-    return await this.menuRepository.find({ where: { restaurant: { id } } })
+    return await this.menuRepository.find({ where: { restaurant: { id } } });
+  }
+
+  async findMenuByIds(ids: string[]): Promise<Menu[]> {
+    return await this.menuRepository.findByIds(ids);
   }
 
   async findReviewsByRestaurant(id: string): Promise<Review[]> {
-    return await this.reviewRepository.find({ where: { restaurant: { id } } })
+    return await this.reviewRepository.find({ where: { restaurant: { id } } });
   }
 
   async save(createRestaurantDto: CreateRestaurantDto): Promise<Restaurant> {
@@ -47,26 +53,32 @@ export class RestaurantsService {
     return await this.menuRepository.save({
       ...createMenuDto,
       restaurant: await this.findById(id),
-    })
+    });
   }
 
-  async saveReview(id: string, createReviewDto: CreateReviewDto): Promise<Review> {
-    const isValidRating = this.isValidRating(createReviewDto.rating)
+  async saveReview(
+    id: string,
+    createReviewDto: CreateReviewDto,
+  ): Promise<Review> {
+    const isValidRating = this.isValidRating(createReviewDto.rating);
 
     if (!isValidRating) {
-      throw new ApiException(400, `A nota dada (${createReviewDto.rating}) não é válida`)
+      throw new ApiException(
+        400,
+        `A nota dada (${createReviewDto.rating}) não é válida`,
+      );
     }
 
     return await this.reviewRepository.save({
       ...createReviewDto,
       restaurant: await this.findById(id),
-    })
+    });
   }
 
   private isValidRating(rating: number): boolean {
-    const minValue = 0
-    const maxValue = 5
-    
-    return rating && (rating >= minValue && rating <= maxValue)
+    const minValue = 0;
+    const maxValue = 5;
+
+    return rating && rating >= minValue && rating <= maxValue;
   }
 }

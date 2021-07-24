@@ -1,4 +1,4 @@
 export interface GetAuthDto {
-  id: string
-  email: string
+  id: string;
+  email: string;
 }

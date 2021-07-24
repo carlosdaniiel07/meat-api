@@ -1,7 +1,7 @@
-import { ConfigService } from "@nestjs/config";
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { ConfigService } from '@nestjs/config';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-import {entities} from './entities'
+import { entities } from './entities';
 
 const getConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   type: 'postgres',
@@ -11,7 +11,7 @@ const getConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   password: configService.get<string>('APP_DATABASE_PASSWORD'),
   database: configService.get<string>('APP_DATABASE_NAME'),
   entities,
-  synchronize: true,
+  synchronize: false,
   ssl: true,
   extra: {
     ssl: {
@@ -19,8 +19,8 @@ const getConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
     },
   },
   logging: configService.get<string>('NODE_ENV') === 'dev' ? ['query'] : [],
-})
+});
 
 export default {
   getConfig,
-}
+};

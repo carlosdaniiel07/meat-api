@@ -1,7 +1,7 @@
-import { ConfigService } from "@nestjs/config";
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { ConfigService } from '@nestjs/config';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-import {entities} from './entities'
+import { entities } from './entities';
 
 const getConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   type: 'postgres',
@@ -15,8 +15,8 @@ const getConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
     },
   },
   logging: configService.get<string>('NODE_ENV') === 'dev' ? ['query'] : [],
-})
+});
 
 export default {
   getConfig,
-}
+};

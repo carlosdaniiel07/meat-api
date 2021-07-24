@@ -1,26 +1,26 @@
-import { IsNotEmpty, IsNumber, Max, Min } from "class-validator"
+import { IsNotEmpty, IsNumber, Max, Min } from 'class-validator';
 
 export class CreateRestaurantDto {
   @IsNotEmpty()
-  name: string
-  
+  name: string;
+
   @IsNotEmpty()
-  category: string
-  
+  category: string;
+
   @IsNotEmpty()
-  deliveryDelay: string
-  
+  deliveryDelay: string;
+
   @IsNumber()
   @Min(0)
   @Max(5)
-  rating: number
-  
+  rating: number;
+
   @IsNotEmpty()
-  imagePath: string
-  
+  imagePath: string;
+
   @IsNotEmpty()
-  description: string
-  
+  description: string;
+
   @IsNotEmpty()
-  openingHours: string
+  openingHours: string;
 }

@@ -1,14 +1,14 @@
-import { IsNotEmpty, IsNumber, Max, Min } from "class-validator";
+import { IsNotEmpty, IsNumber, Max, Min } from 'class-validator';
 
 export class CreateReviewDto {
   @IsNotEmpty()
-  name: string
+  name: string;
 
   @IsNotEmpty()
-  description: string
+  description: string;
 
   @IsNumber()
   @Min(0)
   @Max(5)
-  rating: number
+  rating: number;
 }

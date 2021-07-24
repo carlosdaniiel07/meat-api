@@ -4,18 +4,16 @@ import { CreateRestaurantDto } from './dto/create-restaurant.dto';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { Menu } from './menu.entity';
 import { Restaurant } from './restaurant.entity';
-import { RestaurantsService } from './restaurants.service';
+import { RestaurantService } from './restaurant.service';
 import { Review } from './review.entity';
 
 @Controller('restaurants')
 export class RestaurantsController {
-  
-  constructor(private readonly service: RestaurantsService) {
-  }
+  constructor(private readonly service: RestaurantService) {}
 
   @Get()
   async getAll(): Promise<Restaurant[]> {
-    return this.service.findAll()
+    return this.service.findAll();
   }
 
   @Get(':id')
@@ -25,26 +23,34 @@ export class RestaurantsController {
 
   @Get(':id/reviews')
   async getReviews(@Param('id') id: string): Promise<Review[]> {
-    return await this.service.findReviewsByRestaurant(id)
+    return await this.service.findReviewsByRestaurant(id);
   }
 
   @Post(':id/reviews')
-  async saveReview(@Param('id') id: string, @Body() createReviewDto: CreateReviewDto): Promise<Review> {
-    return await this.service.saveReview(id, createReviewDto)
+  async saveReview(
+    @Param('id') id: string,
+    @Body() createReviewDto: CreateReviewDto,
+  ): Promise<Review> {
+    return await this.service.saveReview(id, createReviewDto);
   }
 
   @Get(':id/menu')
   async getMenu(@Param('id') id: string): Promise<Menu[]> {
-    return await this.service.findMenuByRestaurant(id)
+    return await this.service.findMenuByRestaurant(id);
   }
 
   @Post(':id/menu')
-  async saveMenu(@Param('id') id: string, @Body() createMenuDto: CreateMenuDto): Promise<Menu> {
-    return await this.service.saveMenu(id, createMenuDto)
+  async saveMenu(
+    @Param('id') id: string,
+    @Body() createMenuDto: CreateMenuDto,
+  ): Promise<Menu> {
+    return await this.service.saveMenu(id, createMenuDto);
   }
 
   @Post()
-  async save(@Body() createRestaurantDto: CreateRestaurantDto): Promise<Restaurant> {
+  async save(
+    @Body() createRestaurantDto: CreateRestaurantDto,
+  ): Promise<Restaurant> {
     return await this.service.save(createRestaurantDto);
   }
 }

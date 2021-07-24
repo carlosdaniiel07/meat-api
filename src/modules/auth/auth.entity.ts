@@ -1,25 +1,25 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity } from 'typeorm';
 
-import { BaseEntity } from "src/models/base-entity.model";
-import { AuthRole } from "src/modules/auth/auth-role.enum";
+import { BaseEntity } from 'src/models/base-entity.model';
+import { AuthRole } from 'src/modules/auth/auth-role.enum';
 
 @Entity()
 export class Auth extends BaseEntity {
   @Column({
     length: 80,
-    nullable: false
+    nullable: false,
   })
-  email: string
-  
+  email: string;
+
   @Column({
     length: 255,
-    nullable: false
+    nullable: false,
   })
-  password: string
+  password: string;
 
   @Column({
     length: 30,
-    nullable: false
+    nullable: false,
   })
-  role: AuthRole
+  role: AuthRole;
 }
