@@ -35,11 +35,11 @@ export class OrderService {
       if (!product) {
         throw new ApiException(404, `O item ${orderItem.product} não existe`);
       }
-      
+
       return {
         product,
         quantity: orderItem.quantity,
-      }
+      };
     });
 
     return await this.repository.save({
@@ -53,6 +53,6 @@ export class OrderService {
   }
 
   private getOrderItemTotal(orderItem: OrderItem): number {
-    return (orderItem.product?.price ?? 0) * orderItem.quantity 
+    return (orderItem.product?.price ?? 0) * orderItem.quantity;
   }
 }

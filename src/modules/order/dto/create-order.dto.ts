@@ -15,5 +15,5 @@ export class CreateOrderDto {
   items: CreateOrderItemDto[];
 
   @IsEnum(PaymentMethod)
-  paymentMethod: PaymentMethod
+  paymentMethod: PaymentMethod;
 }

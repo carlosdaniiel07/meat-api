@@ -1,10 +1,10 @@
-import { IsNumber, IsPositive, IsUUID } from "class-validator";
+import { IsNumber, IsPositive, IsUUID } from 'class-validator';
 
 export class CreateOrderItemDto {
   @IsUUID()
-  product: string
+  product: string;
 
   @IsNumber()
   @IsPositive()
-  quantity: number
+  quantity: number;
 }
