@@ -58,13 +58,13 @@ export class OrderService {
     const productsValue = orderItems
       .map(this.getOrderItemTotal)
       .reduce((total, current) => total + current, 0);
-    const deliveryFee = this.getOrderDeliveryFee(productsValue)
+    const deliveryFee = this.getOrderDeliveryFee(productsValue);
 
-    return productsValue + deliveryFee
+    return productsValue + deliveryFee;
   }
 
   private getOrderDeliveryFee(productsValue: number): number {
-    const deliveryFeePercentage = 0.05
-    return productsValue * deliveryFeePercentage
+    const deliveryFeePercentage = 0.05;
+    return productsValue * deliveryFeePercentage;
   }
 }
