@@ -46,13 +46,25 @@ export class OrderService {
       deliveryAddress,
       items: orderItems,
       paymentMethod: createOrderDto.paymentMethod,
-      total: orderItems
-        .map(this.getOrderItemTotal)
-        .reduce((total, current) => total + current, 0),
+      total: this.getOrderTotalValue(orderItems),
     });
   }
 
   private getOrderItemTotal(orderItem: OrderItem): number {
     return (orderItem.product?.price ?? 0) * orderItem.quantity;
+  }
+
+  private getOrderTotalValue(orderItems: OrderItem[]): number {
+    const productsValue = orderItems
+      .map(this.getOrderItemTotal)
+      .reduce((total, current) => total + current, 0);
+    const deliveryFee = this.getOrderDeliveryFee(productsValue)
+
+    return productsValue + deliveryFee
+  }
+
+  private getOrderDeliveryFee(productsValue: number): number {
+    const deliveryFeePercentage = 0.05
+    return productsValue * deliveryFeePercentage
   }
 }
